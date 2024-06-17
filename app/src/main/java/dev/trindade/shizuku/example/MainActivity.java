@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         
          binding.requestButton.setOnClickListener( v -> {
              boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
-         }
+         });
     }
 
     private void onRequestPermissionsResult(int requestCode, int grantResult) {
