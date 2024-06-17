@@ -3,12 +3,22 @@ package android.content.pm;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
+import android.os.RemoteException;
 
 public interface IPackageInstaller extends IInterface {
-    void uninstall(android.content.pm.VersionedPackage versionedPackage, java.lang.String callerPackageName, int flags, android.content.IntentSender statusReceiver, int userId) throws android.os.RemoteException;
+
+    void abandonSession(int sessionId)
+            throws RemoteException;
+
+    IPackageInstallerSession openSession(int sessionId)
+            throws RemoteException;
+
+    ParceledListSlice<PackageInstaller.SessionInfo> getMySessions(String installerPackageName, int userId)
+            throws RemoteException;
 
     abstract class Stub extends Binder implements IPackageInstaller {
-        public static IPackageInstaller asInterface(IBinder obj) {
+
+        public static IPackageInstaller asInterface(IBinder binder) {
             throw new UnsupportedOperationException();
         }
     }

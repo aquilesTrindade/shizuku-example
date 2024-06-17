@@ -5,8 +5,10 @@ import android.os.IBinder;
 import android.os.IInterface;
 
 public interface IPackageInstallerSession extends IInterface {
+
     abstract class Stub extends Binder implements IPackageInstallerSession {
-        public static IPackageInstallerSession asInterface(IBinder obj) {
+
+        public static IPackageInstallerSession asInterface(IBinder binder) {
             throw new UnsupportedOperationException();
         }
     }
