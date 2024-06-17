@@ -1,4 +1,4 @@
-package rikka.shizuku.demo.util;
+package dev.trindade.shizuku.package_installer.test.util;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
