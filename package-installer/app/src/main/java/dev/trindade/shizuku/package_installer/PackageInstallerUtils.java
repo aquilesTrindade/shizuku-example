@@ -1,41 +1,37 @@
 package dev.trindade.shizuku.package_installer;
 
+import android.app.PendingIntent;
 import android.content.Context;
-import android.content.pm.IPackageInstaller;
-import android.content.pm.IPackageInstallerSession;
+import android.content.Intent;
 import android.content.pm.PackageInstaller;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import java.lang.reflect.InvocationTargetException;
-
-@SuppressWarnings({"JavaReflectionMemberAccess"})
 public class PackageInstallerUtils {
 
-    public static PackageInstaller createPackageInstaller(IPackageInstaller installer, String installerPackageName, String installerAttributionTag, int userId) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            return PackageInstaller.class.getConstructor(IPackageInstaller.class, String.class, String.class, int.class)
-                    .newInstance(installer, installerPackageName, installerAttributionTag, userId);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return PackageInstaller.class.getConstructor(IPackageInstaller.class, String.class, int.class)
-                    .newInstance(installer, installerPackageName, userId);
-        } else {
-            return PackageInstaller.class.getConstructor(Context.class, PackageManager.class, IPackageInstaller.class, String.class, int.class)
-                    .newInstance(ApplicationUtils.getApplication(), ApplicationUtils.getApplication().getPackageManager(), installer, installerPackageName, userId);
+    public static void installPackage(Context context, String apkFilePath) throws IOException {
+        PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
+        PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(
+                PackageInstaller.SessionParams.MODE_FULL_INSTALL);
+
+        int sessionId = packageInstaller.createSession(params);
+        try (PackageInstaller.Session session = packageInstaller.openSession(sessionId);
+             InputStream in = new FileInputStream(new File(apkFilePath));
+             OutputStream out = session.openWrite("base.apk", 0, -1)) {
+
+            byte[] buffer = new byte[65536];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+            session.fsync(out);
+
+            Intent intent = new Intent(context, MyReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            session.commit(pendingIntent.getIntentSender());
         }
-    }
-
-    public static PackageInstaller.Session createSession(IPackageInstallerSession session) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        return PackageInstaller.Session.class.getConstructor(IPackageInstallerSession.class)
-                .newInstance(session);
-
-    }
-
-    public static int getInstallFlags(PackageInstaller.SessionParams params) throws NoSuchFieldException, IllegalAccessException {
-        return (int) PackageInstaller.SessionParams.class.getDeclaredField("installFlags").get(params);
-    }
-
-    public static void setInstallFlags(PackageInstaller.SessionParams params, int newValue) throws NoSuchFieldException, IllegalAccessException {
-        PackageInstaller.SessionParams.class.getDeclaredField("installFlags").set(params, newValue);
     }
 }
