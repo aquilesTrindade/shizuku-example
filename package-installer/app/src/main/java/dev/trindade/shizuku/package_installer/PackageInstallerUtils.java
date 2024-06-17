@@ -1,4 +1,4 @@
-package dev.trindade.shizuku.package_installer.test.util;
+package dev.trindade.shizuku.package_installer;
 
 import android.content.Context;
 import android.content.pm.IPackageInstaller;
