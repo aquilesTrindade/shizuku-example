@@ -3,7 +3,7 @@ package dev.trindade.shizuku.package_installer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.*;
-import android.view.*
+import android.view.*;
 import android.widget.*;
 import android.content.pm.*;
 
@@ -16,6 +16,7 @@ import java.io.*;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    
     private static final int SHIZUKU_REQUEST_CODE = 258;
 
     private final Shizuku.OnRequestPermissionResultListener REQUEST_PERMISSION_RESULT_LISTENER = (requestCode, grantResult) -> {
