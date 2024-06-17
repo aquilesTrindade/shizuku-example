@@ -10,7 +10,7 @@
         android:supportsRtl="true" 
         android:theme="@style/AppTheme">
         <activity 
-            android:name="dev.trindade.shizuku.example.MainActivity" 
+            android:name="dev.trindade.shizuku.simple_implement.MainActivity" 
             android:exported="true">
             <intent-filter>
                 <action 

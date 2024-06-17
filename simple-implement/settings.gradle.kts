@@ -14,6 +14,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Teste"
+rootProject.name = "simple-implement"
 
 include(":app")
