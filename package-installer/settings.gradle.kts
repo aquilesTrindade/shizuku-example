@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "package-installer"
 
 include(":app")
+include(":hiddet-api")

@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    compileOnly(project(":hidden-api"))
+    
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.9.0")
