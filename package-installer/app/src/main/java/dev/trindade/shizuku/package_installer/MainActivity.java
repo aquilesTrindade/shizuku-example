@@ -11,6 +11,8 @@ import rikka.shizuku.Shizuku;
 
 import dev.trindade.shizuku.package_installer.databinding.ActivityMainBinding;
 
+import java.io.*b
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -35,9 +37,18 @@ public class MainActivity extends AppCompatActivity {
         Shizuku.addBinderReceivedListenerSticky(BINDER_RECEIVED_LISTENER);
         Shizuku.addBinderDeadListener(BINDER_DEAD_LISTENER);
         
-         binding.requestButton.setOnClickListener( v -> {
+        binding.requestButton.setOnClickListener( v -> {
              boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
-         });
+        });
+        
+        binding.installButton.setOnClickListener( v -> {
+             var apkFilePath = binding.apkPathVal.getText().toString(); 
+             try {
+                 PackageInstallerUtils.installPackage(this, apkFilePath);
+             } catch (IOException e) {
+                  e.printStackTrace();
+             }
+        });
     }
 
     private void onRequestPermissionsResult(int requestCode, int grantResult) {
