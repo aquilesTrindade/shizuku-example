@@ -18,17 +18,17 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent">
     
-      <com.gooogle.material.android.textfield.TextInputLayout
+      <com.gooogle.android.material.textfield.TextInputLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent">
          
-         <com.gooogle.material.android.textfield.TextInputEditText
+         <com.gooogle.android.material.textfield.TextInputEditText
            android:layout_width="match_parent"
            android:id="@+id/apkPathVal"
            android:hint="apk path"
            android:layout_height="match_parent" />
            
-       </com.gooogle.material.android.textfield.TextInputLayout>
+       </com.gooogle.android.material.textfield.TextInputLayout>
        
        <Button
           android:layout_width="match_parent"
