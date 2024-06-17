@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast; 
 import android.content.pm.PackageManager;
 
 import rikka.shizuku.Shizuku;
