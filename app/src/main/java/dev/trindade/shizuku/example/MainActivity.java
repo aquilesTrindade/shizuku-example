@@ -3,6 +3,7 @@ package dev.trindade.shizuku.example;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.content.pm.PackageManager;
 
 import rikka.shizuku.Shizuku;
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Shizuku.addRequestPermissionResultListener(REQUEST_PERMISSION_RESULT_LISTENER);
         Shizuku.addBinderReceivedListenerSticky(BINDER_RECEIVED_LISTENER);
         Shizuku.addBinderDeadListener(BINDER_DEAD_LISTENER);
-
-        boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
+        
+         binding.requestButton.setOnClickListener( v -> {
+             boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
+         }
     }
 
     private void onRequestPermissionsResult(int requestCode, int grantResult) {
