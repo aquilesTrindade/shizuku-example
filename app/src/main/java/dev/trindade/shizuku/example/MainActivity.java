@@ -13,6 +13,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private final Shizuku.OnRequestPermissionResultListener REQUEST_PERMISSION_RESULT_LISTENER = this::onRequestPermissionsResult;
+    private final Shizuku.OnBinderReceivedListener BINDER_RECEIVED_LISTENER = () -> {
+        if (Shizuku.isPreV11()) {
+            Toast.makeText(this, "not supported (prev11)", 4000).show();
+        } else {
+            Toast.makeText(this, "Binder received", 4000).show();
+        }
+    };
+    private final Shizuku.OnBinderDeadListener BINDER_DEAD_LISTENER = () -> Toast.makeText(this, "Binder dead", 4000).show();
     private static final int SHIZUKU_REQUEST_CODE = 258;
 
     @Override
@@ -22,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         Shizuku.addRequestPermissionResultListener(REQUEST_PERMISSION_RESULT_LISTENER);
+        Shizuku.addBinderReceivedListenerSticky(BINDER_RECEIVED_LISTENER);
+        Shizuku.addBinderDeadListener(BINDER_DEAD_LISTENER);
 
         boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
     }
