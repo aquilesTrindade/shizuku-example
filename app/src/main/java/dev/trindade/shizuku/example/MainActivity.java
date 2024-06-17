@@ -1,4 +1,4 @@
-package dev.tirndade.shizuku.example;
+package dev.trindade.shizuku.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
 
 import rikka.shizuku.Shizuku;
 
-import dev.trindade.databinding.ActivityMainBinding;
+import dev.trindade.shizuku.example.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

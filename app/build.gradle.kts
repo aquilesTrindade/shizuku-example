@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.trindade"
+    namespace = "dev.trindade.shizuku.example"
     compileSdk = 34
     
     defaultConfig {
-        applicationId = "dev.trindade"
+        applicationId = "dev.trindade.shizuku.example"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
