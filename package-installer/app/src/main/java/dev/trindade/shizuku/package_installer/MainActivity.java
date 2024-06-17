@@ -11,7 +11,7 @@ import rikka.shizuku.Shizuku;
 
 import dev.trindade.shizuku.package_installer.databinding.ActivityMainBinding;
 
-import java.io.*b
+import java.io.*;
 
 public class MainActivity extends AppCompatActivity {
 
