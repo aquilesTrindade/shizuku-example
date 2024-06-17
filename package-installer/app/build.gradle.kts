@@ -1,7 +1,7 @@
 
 plugins {
     id("com.android.application")
-    
+    id("dev.rikka.tools.refine")
 }
 
 android {

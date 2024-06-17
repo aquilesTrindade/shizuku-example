@@ -5,12 +5,18 @@ on:
   push:
     paths:
       - .github/workflows/debugCompile.yml
-      - app/**
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - settings.gradle.kts
+      - simple-implement/app/**
+      - simple-implement/build.gradle.kts
+      - simple-implement/gradle.properties
+      - simple-implement/gradlew
+      - simple-implement/gradlew.bat
+      - simple-implement/settings.gradle.kts
+      - package-installer/app/**
+      - package-installer/build.gradle.kts
+      - package-installer/gradle.properties
+      - package-installer/gradlew
+      - package-installer/gradlew.bat
+      - package-installer/settings.gradle.kts
 
 jobs:
   simple-implement-debug-apk:
