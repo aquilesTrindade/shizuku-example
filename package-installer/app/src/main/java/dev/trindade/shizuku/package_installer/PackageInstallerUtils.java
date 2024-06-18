@@ -52,6 +52,7 @@ public class PackageInstallerUtils {
                     in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(context,  e.toString(), 4000).show();
                 }
             }
             if (out != null) {
@@ -59,6 +60,7 @@ public class PackageInstallerUtils {
                     out.close();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(context,  e.toString(), 4000).show();
                 }
             }
             session.close();
