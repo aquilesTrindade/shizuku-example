@@ -18,8 +18,8 @@ public class PackageInstallerUtils {
                 PackageInstaller.SessionParams.MODE_FULL_INSTALL);
 
         int sessionId = packageInstaller.createSession(params);
-        try (PackageInstaller.Session session = packageInstaller.openSession(sessionId);
-             InputStream in = new FileInputStream(new File(apkFilePath));
+        PackageInstaller.Session session = packageInstaller.openSession(sessionId);
+        try (InputStream in = new FileInputStream(new File(apkFilePath));
              OutputStream out = session.openWrite("base.apk", 0, -1)) {
 
             byte[] buffer = new byte[65536];
@@ -32,6 +32,11 @@ public class PackageInstallerUtils {
             Intent intent = new Intent(context, MyReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             session.commit(pendingIntent.getIntentSender());
+        } catch (IOException e) {
+            session.abandon();
+            throw e;
+        } finally {
+            session.close();
         }
     }
 }

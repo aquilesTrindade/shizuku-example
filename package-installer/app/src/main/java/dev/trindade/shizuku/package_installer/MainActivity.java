@@ -16,7 +16,6 @@ import java.io.*;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    
     private static final int SHIZUKU_REQUEST_CODE = 258;
 
     private final Shizuku.OnRequestPermissionResultListener REQUEST_PERMISSION_RESULT_LISTENER = (requestCode, grantResult) -> {
