@@ -19,8 +19,12 @@ public class PackageInstallerUtils {
 
         int sessionId = packageInstaller.createSession(params);
         PackageInstaller.Session session = packageInstaller.openSession(sessionId);
-        try (InputStream in = new FileInputStream(new File(apkFilePath));
-             OutputStream out = session.openWrite("base.apk", 0, -1)) {
+
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = new FileInputStream(new File(apkFilePath));
+            out = session.openWrite("base.apk", 0, -1);
 
             byte[] buffer = new byte[65536];
             int bytesRead;
@@ -29,6 +33,13 @@ public class PackageInstallerUtils {
             }
             session.fsync(out);
 
+            // Close the streams before committing
+            in.close();
+            out.close();
+
+            in = null;
+            out = null;
+
             Intent intent = new Intent(context, MyReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             session.commit(pendingIntent.getIntentSender());
@@ -36,6 +47,20 @@ public class PackageInstallerUtils {
             session.abandon();
             throw e;
         } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             session.close();
         }
     }
