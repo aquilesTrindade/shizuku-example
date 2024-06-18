@@ -1,6 +1,5 @@
 package dev.trindade.shizuku.package_installer;
 
-package dev.trindade.shizuku.package_installer;
 
 import android.app.PendingIntent;
 import android.content.Context;
