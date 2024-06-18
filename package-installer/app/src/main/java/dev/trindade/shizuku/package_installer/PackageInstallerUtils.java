@@ -24,11 +24,12 @@ public class PackageInstallerUtils {
         PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
         PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(
                 PackageInstaller.SessionParams.MODE_FULL_INSTALL);
+        params.setAppPackageName("dev.trindade.shizuku.simple_implement"); // Defina o nome do pacote do APK que você está instalando
 
         int sessionId = packageInstaller.createSession(params);
         Log.d(TAG, "Created session with ID: " + sessionId);
         Toast.makeText(context, "Sessão criada com ID: " + sessionId, Toast.LENGTH_SHORT).show();
-        
+
         PackageInstaller.Session session = packageInstaller.openSession(sessionId);
 
         InputStream in = null;
@@ -60,7 +61,7 @@ public class PackageInstallerUtils {
             out = null;
 
             Intent intent = new Intent(context, MyReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, sessionId, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
             session.commit(pendingIntent.getIntentSender());
             Log.d(TAG, "Committed session for installation");
             Toast.makeText(context, "Sessão comitada para instalação", Toast.LENGTH_SHORT).show();

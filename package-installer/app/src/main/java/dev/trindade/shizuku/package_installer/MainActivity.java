@@ -1,19 +1,13 @@
 package dev.trindade.shizuku.package_installer;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.*;
-import android.view.*;
-import android.widget.*;
-import android.content.pm.*;
-import android.util.*;
-
-import rikka.shizuku.*;
-
-import dev.trindade.shizuku.package_installer.databinding.*;
-
-import java.io.*;
-
+import android.os.Bundle;
+import android.widget.Toast;
+import android.content.pm.PackageManager;
+import android.util.Log;
+import rikka.shizuku.Shizuku;
+import dev.trindade.shizuku.package_installer.databinding.ActivityMainBinding;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
