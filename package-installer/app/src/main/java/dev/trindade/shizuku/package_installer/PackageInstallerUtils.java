@@ -1,14 +1,12 @@
 package dev.trindade.shizuku.package_installer;
 
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInstaller;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import android.app.*;
+import android.content.*;
+import android.content.pm.*;
+import android.view.*;
+import android.widget.*;
+
+import java.io.*;
 
 public class PackageInstallerUtils {
 

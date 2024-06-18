@@ -1,10 +1,8 @@
 package dev.trindade.shizuku.package_installer;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInstaller;
-import android.util.Log;
+import android.content.*;
+import android.content.pm.*;
+import android.util.*;
 
 public class MyReceiver extends BroadcastReceiver {
     @Override

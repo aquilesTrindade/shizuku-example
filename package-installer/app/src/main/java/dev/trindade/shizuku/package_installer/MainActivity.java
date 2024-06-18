@@ -13,6 +13,7 @@ import dev.trindade.shizuku.package_installer.databinding.*;
 
 import java.io.*;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
