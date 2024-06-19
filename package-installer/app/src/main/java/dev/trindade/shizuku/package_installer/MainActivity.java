@@ -9,6 +9,7 @@ import rikka.shizuku.*;
 import dev.trindade.shizuku.package_installer.databinding.*;
 import java.io.*;
 import java.util.*;
+import java.lang.reflect.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             */
             var outputText = new TextView(this);
-            var command = "pm install " + Binding.apkPathVal.getText().toString();
+            var command = "pm install " + binding.apkPathVal.getText().toString();
             var output = execute(command);
             outputText.setText(output.toString());
             binding.getRoot().addView(outputText);
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
          
          Method mtd = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
          mtd.setAccesible(true);
-         ShizukuRemoteProcess prcss = (ShizukuRemoteProcess) m.invoke(null, new Object[]{new String[]{"sh", "-c", String.join(" ", command)}, null, "/"});
+         ShizukuRemoteProcess prcss = (ShizukuRemoteProcess) mtd.invoke(null, new Object[]{new String[]{"sh", "-c", String.join(" ", command)}, null, "/"});
          prcss.waitFor();
          Toast.makeText(this, "Process exit wit code: " + prcss.exitValue(), 4000).show();
          
