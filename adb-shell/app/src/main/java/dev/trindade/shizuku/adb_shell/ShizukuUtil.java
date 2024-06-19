@@ -42,6 +42,14 @@ public class ShizukuUtil {
         Shizuku.addBinderReceivedListenerSticky(BINDER_RECEIVED_LISTENER);
         Shizuku.addBinderDeadListener(BINDER_DEAD_LISTENER);
     }
+    
+    
+    public static void destroy () {
+        Shizuku.removeRequestPermissionResultListener(ShizukuUtil.REQUEST_PERMISSION_RESULT_LISTENER);
+        Shizuku.removeBinderReceivedListener(ShizukuUtil.BINDER_RECEIVED_LISTENER);
+        Shizuku.removeBinderDeadListener(ShizukuUtil.BINDER_DEAD_LISTENER);
+    }
+    
 
     public static boolean checkShizukuPermission(int code) {
         if (Shizuku.isPreV11()) {
