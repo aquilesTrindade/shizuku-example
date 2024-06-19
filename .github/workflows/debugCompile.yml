@@ -51,7 +51,7 @@ jobs:
           path: simple-implement/app/build/outputs/apk/
           
   adb-shell-debug-apk:
-    name: Build Package Installer Debug APK
+    name: Build Adb-Shell Debug APK
     runs-on: ubuntu-latest
 
     steps:
