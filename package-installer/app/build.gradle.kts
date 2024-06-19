@@ -47,7 +47,6 @@ android {
             keyPassword = "testkey"
         }
     }
-    
 }
 
 dependencies {
