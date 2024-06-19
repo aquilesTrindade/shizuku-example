@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
             Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
             try {
-                List<String> output = execute(binding.apkPathVal.getText().toString();
+                List<String> output = execute(binding.apkPathVal.getText().toString());
                 StringBuilder outputText = new StringBuilder();
                 for (String line : output) {
                     outputText.append(line).append("\n");
