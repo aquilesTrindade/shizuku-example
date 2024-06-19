@@ -12,38 +12,21 @@
     android:text="request"
     android:id="@+id/requestButton" />
     
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:orientation="vertical"
-      android:layout_height="wrap_content">
+      <include
+          android:layout="@layoyt/edittext" />
     
-      <com.google.android.material.textfield.TextInputLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-         
-         <com.google.android.material.textfield.TextInputEditText
-           android:layout_width="match_parent"
-           android:id="@+id/apkPathVal"
-           android:hint="apk path"
-           android:text="/storage/emulated/0/Download/app-debug.apk" 
-           android:layout_height="match_parent" />
-           
-       </com.google.android.material.textfield.TextInputLayout>
-       
        <Button
           android:layout_width="wrap_content"
           android:id="@+id/installButton"
           android:text="install"
           android:layout_height="match_parent" /> 
        
-    </LinearLayout>
-    
     <ScrollView
         android:layout_width="wrap_content"
         android:id="@+id/scroll"
         android:layout_height="match_parent" >
         
-        
+        <!-- output textview here -->
         
     </ScrollView>    
 

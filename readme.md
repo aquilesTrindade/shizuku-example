@@ -2,5 +2,5 @@
 ### Shizuku Simple Implement
 - `status:` finished.
 
-### Shizuku Package Installer
+### Shizuku ADB Shell
 - `status:` development.

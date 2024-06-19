@@ -1,20 +1,20 @@
-package dev.trindade.shizuku.package_installer;
+package dev.trindade.shizuku.adb_shell;
 
 import android.content.*;
 import android.content.pm.*;
 import android.util.*;
 
-public class MyReceiver extends BroadcastReceiver {
+public class ADBReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int status = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE);
 
         switch (status) {
             case PackageInstaller.STATUS_SUCCESS:
-                Log.d("MyReceiver", "Instalação bem-sucedida");
+                Log.d("ADBReceiver", "Installation successful");
                 break;
             default:
-                Log.d("MyReceiver", "Falha na instalação: " + status);
+                Log.d("ADBReceiver", "Installation failed: "  + status);
                 break;
         }
     }

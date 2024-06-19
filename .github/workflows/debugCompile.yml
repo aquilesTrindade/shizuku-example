@@ -11,12 +11,12 @@ on:
       - simple-implement/gradlew
       - simple-implement/gradlew.bat
       - simple-implement/settings.gradle.kts
-      - package-installer/app/**
-      - package-installer/build.gradle.kts
-      - package-installer/gradle.properties
-      - package-installer/gradlew
-      - package-installer/gradlew.bat
-      - package-installer/settings.gradle.kts
+      - adb-shell/app/**
+      - adb-shell/build.gradle.kts
+      - adb-shell/gradle.properties
+      - adb-shell/gradlew
+      - adb-shell/gradlew.bat
+      - adb-shell/settings.gradle.kts
 
 jobs:
   simple-implement-debug-apk:
@@ -50,7 +50,7 @@ jobs:
           name: simple-implement-debug
           path: simple-implement/app/build/outputs/apk/
           
-  package-installer-debug-apk:
+  adb-shell-debug-apk:
     name: Build Package Installer Debug APK
     runs-on: ubuntu-latest
 
@@ -66,17 +66,17 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-        run: chmod +x package-installer/gradlew
+        run: chmod +x adb-shell/gradlew
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       
       - name: Build with Gradle
         id: gradle_build_debug
-        run: ./package-installer/gradlew assembleDebug -p package-installer
+        run: ./adb-shell/gradlew assembleDebug -p adb-shell
 
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: package-installer-debug
-          path: package-installer/app/build/outputs/apk/        
+          name: adb-shell-debug
+          path: adb-shell/app/build/outputs/apk/        

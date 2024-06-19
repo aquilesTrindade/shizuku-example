@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.trindade.shizuku.package_installer"
+    namespace = "dev.trindade.shizuku.adb_shell"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "dev.trindade.shizuku.package_installer"
+        applicationId = "dev.trindade.shizuku.adb_shell"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -57,4 +57,6 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("dev.rikka.shizuku:api:13.1.5")
     implementation("dev.rikka.shizuku:provider:13.1.5")
+    
+    implementation("io.github.ackeecz:TextInputLayout:2.0.0")
 }
