@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        binding_include = EdittextBindinginflate(getLayoutInflater());
+        binding_include = EdittextBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
         ShizukuUtil.initialize(this);
