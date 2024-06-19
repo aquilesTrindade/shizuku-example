@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             String apkFilePath = binding.apkPathVal.getText().toString();
             Toast.makeText(this, "wait...", Toast.LENGTH_SHORT).show();
             try {
+                List<String> output = execute(binding.apkPathVal.getText().toString());
                 runOnUiThread(()->{
-                      List<String> output = execute(binding.apkPathVal.getText().toString());
                       StringBuilder outputText = new StringBuilder();
                       for (String line : output) {
                           outputText.append(line).append("\n");
