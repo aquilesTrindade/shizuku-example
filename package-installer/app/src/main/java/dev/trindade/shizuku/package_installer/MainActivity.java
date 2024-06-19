@@ -51,22 +51,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.installButton.setOnClickListener(v -> {
-            /*
-                var apkFilePath = binding.apkPathVal.getText().toString();
-                Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
-                Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
-                try {
-                    PackageInstallerUtils.installPackage(this, apkFilePath);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
+            String apkFilePath = binding.apkPathVal.getText().toString();
+            Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
+            Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
+            try {
+                List<String> output = execute("pm install " + apkFilePath);
+                StringBuilder outputText = new StringBuilder();
+                for (String line : output) {
+                    outputText.append(line).append("\n");
                 }
-            */
-            var outputText = new TextView(this);
-            var command = "pm install " + binding.apkPathVal.getText().toString();
-            var output = execute(command);
-            outputText.setText(output.toString());
-            binding.getRoot().addView(outputText);
+                TextView outputTextView = new TextView(this);
+                outputTextView.setText(outputText.toString());
+                binding.getRoot().addView(outputTextView);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
+            }
         });
     }
 
