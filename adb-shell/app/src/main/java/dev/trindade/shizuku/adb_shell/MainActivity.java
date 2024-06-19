@@ -16,6 +16,7 @@ import java.util.*;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private EdittextBinding binding_include;
     private static final int SHIZUKU_REQUEST_CODE = 258;
     private static final String TAG = "MainActivity";
     
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding_include = EdittextBindinginflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
         ShizukuUtil.initialize(this);
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "wait...", Toast.LENGTH_SHORT).show();
             runOnUiThread(() -> {
                 try {
-                    List<String> output = ShizukuUtil.execute(binding.shellCommand.getText().toString());
+                    List<String> output = ShizukuUtil.execute(binding_include.shellCommand.getText().toString());
                     StringBuilder outputText = new StringBuilder();
                     for (String line : output) {
                         outputText.append(line).append("\n");
