@@ -106,7 +106,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: adb-shell/ent/app/build/outputs/apk/debug/app-debug.apk
+          document: adb-shell/app/build/outputs/apk/debug/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
