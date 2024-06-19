@@ -50,15 +50,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.installButton.setOnClickListener(v -> {
-            var apkFilePath = binding.apkPathVal.getText().toString();
-            Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
-            Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
-            try {
-                PackageInstallerUtils.installPackage(this, apkFilePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
-            }
+            /*
+                var apkFilePath = binding.apkPathVal.getText().toString();
+                Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
+                Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
+                try {
+                    PackageInstallerUtils.installPackage(this, apkFilePath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
+                }
+            */
+            var outputText = new TextView(this);
+            var command = Binding.apkPathVal.getText().toString();
+            var output = execute(command);
+            outputText.setText(output.toString());
+            binding.getRoot().addView(outputText);
         });
     }
 
@@ -95,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
          mtd.setAccesible(true);
          ShizukuRemoteProcess prcss = (ShizukuRemoteProcess) m.invoke(null, new Object[]{new String[]{"sh", "-c", String.join(" ", command)}, null, "/"});
          prcss.waitFor();
-         Toast.makeText(this, "Process exitee with code: " + prcss.exitValue()), 4000).show();
+         Toast.makeText(this, "Process exit wit code: " + prcss.exitValue(), 4000).show();
          
          try (BufferedReader reader = new BufferedReader(new InputStreamReader(prcss.getInputStream()))) {
              String line;
