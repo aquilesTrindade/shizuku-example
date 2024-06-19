@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
          }
          
          Method mtd = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
-         mtd.setAccesible(true);
+         mtd.setAccessible(true);
          ShizukuRemoteProcess prcss = (ShizukuRemoteProcess) mtd.invoke(null, new Object[]{new String[]{"sh", "-c", String.join(" ", command)}, null, "/"});
          prcss.waitFor();
          Toast.makeText(this, "Process exit wit code: " + prcss.exitValue(), 4000).show();
