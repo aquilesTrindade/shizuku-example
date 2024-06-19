@@ -13,7 +13,7 @@
     android:id="@+id/requestButton" />
     
       <include
-          android:layout="@layoyt/edittext" />
+          android:layout="@layout/edittext" />
     
        <Button
           android:layout_width="wrap_content"
