@@ -1,13 +1,14 @@
 package dev.trindade.shizuku.package_installer;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Toast;
-import android.content.pm.PackageManager;
-import android.util.Log;
-import rikka.shizuku.Shizuku;
-import dev.trindade.shizuku.package_installer.databinding.ActivityMainBinding;
-import java.io.IOException;
+import androidx.appcompat.app.*;
+import android.os.*;
+import android.widget.*;
+import android.content.pm.*;
+import android.util.*;
+import rikka.shizuku.*;
+import dev.trindade.shizuku.package_installer.databinding.*;
+import java.io.*;
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,5 +82,34 @@ public class MainActivity extends AppCompatActivity {
             Shizuku.requestPermission(code);
             return false;
         }
+    }
+    
+    private List<String> execute (String... command) throws Exception {
+         List<String> out = new ArrayList<>();
+         
+         if (Shizuku.pingBinder()) {
+             //Shizuku is running
+         }
+         
+         Method mtd = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
+         mtd.setAccesible(true);
+         ShizukuRemoteProcess prcss = (ShizukuRemoteProcess) m.invoke(null, new Object[]{new String[]{"sh", "-c", String.join(" ", command)}, null, "/"});
+         prcss.waitFor();
+         Toast.makeText(this, "Process exitee with code: " + prcss.exitValue()), 4000).show();
+         
+         try (BufferedReader reader = new BufferedReader(new InputStreamReader(prcss.getInputStream()))) {
+             String line;
+             while ((line = reader.readLine()) != null) {
+                 out.add(line);
+             }
+         }
+         
+         try (BufferedReader reader = new BufferedReader(new InputStreamReader(prcss.getErrorStream()))) {
+             String line;
+             while ((line = reader.readLine()) != null) {
+                 out.add("error: " + line);
+             }
+         }
+         return out;
     }
 }
