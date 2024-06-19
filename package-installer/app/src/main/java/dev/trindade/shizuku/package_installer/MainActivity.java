@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 TextView outputTextView = new TextView(this);
                 outputTextView.setText(outputText.toString());
-                binding.getRoot().addView(outputTextView);
+                binding.scroll.addView(outputTextView);
+                outputTextView.setTextIsSelectable(true);
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
