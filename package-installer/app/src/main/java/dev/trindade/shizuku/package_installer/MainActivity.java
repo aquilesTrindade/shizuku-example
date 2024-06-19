@@ -47,26 +47,27 @@ public class MainActivity extends AppCompatActivity {
         binding.requestButton.setOnClickListener(v -> {
             boolean shizukuPermissionStatus = checkShizukuPermission(SHIZUKU_REQUEST_CODE);
             Log.d(TAG, "Shizuku permission status: " + shizukuPermissionStatus);
-            Toast.makeText(this, "Status da permissão Shizuku: " + shizukuPermissionStatus, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Shizuku permission status:  " + shizukuPermissionStatus, Toast.LENGTH_SHORT).show();
         });
 
         binding.installButton.setOnClickListener(v -> {
             String apkFilePath = binding.apkPathVal.getText().toString();
-            Log.d(TAG, "Install button clicked, APK path: " + apkFilePath);
-            Toast.makeText(this, "Botão de instalação clicado, caminho do APK: " + apkFilePath, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "wait...", Toast.LENGTH_SHORT).show();
             try {
-                List<String> output = execute(binding.apkPathVal.getText().toString());
-                StringBuilder outputText = new StringBuilder();
-                for (String line : output) {
-                    outputText.append(line).append("\n");
-                }
-                TextView outputTextView = new TextView(this);
-                outputTextView.setText(outputText.toString());
-                binding.scroll.addView(outputTextView);
-                outputTextView.setTextIsSelectable(true);
+                runOnUiThread()->{
+                      List<String> output = execute(binding.apkPathVal.getText().toString());
+                      StringBuilder outputText = new StringBuilder();
+                      for (String line : output) {
+                          outputText.append(line).append("\n");
+                      }
+                      TextView outputTextView = new TextView(this);
+                      outputTextView.setText(outputText.toString());
+                      binding.scroll.addView(outputTextView);
+                      outputTextView.setTextIsSelectable(true);
+               });       
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Falha na instalação do pacote", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Package installation failed ", Toast.LENGTH_LONG).show();
             }
         });
     }
