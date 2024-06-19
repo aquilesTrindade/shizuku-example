@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             */
             var outputText = new TextView(this);
-            var command = Binding.apkPathVal.getText().toString();
+            var command = "pm install " + Binding.apkPathVal.getText().toString();
             var output = execute(command);
             outputText.setText(output.toString());
             binding.getRoot().addView(outputText);
