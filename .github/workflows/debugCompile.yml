@@ -50,6 +50,24 @@ jobs:
           name: simple-implement-debug
           path: simple-implement/app/build/outputs/apk/
           
+      - name: Send APK to Trindade CI Telegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          document: simple-implement/app/build/outputs/apk/app-debug.apk
+          disable_web_page_preview: false
+          message: |
+            *Build Success!*
+            Repository: *${{ github.repository }}*
+            Branch: *${{ github.ref_name }}*
+            Module: SIMPLE-IMPLEMENT
+            Commit message: `${{ github.event.head_commit.message }}`
+            [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                    
+          
   adb-shell-debug-apk:
     name: Build Adb-Shell Debug APK
     runs-on: ubuntu-latest
@@ -79,4 +97,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: adb-shell-debug
-          path: adb-shell/app/build/outputs/apk/        
+          path: adb-shell/app/build/outputs/apk/
+          
+      - name: Send APK to Trindade CI Telegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          document: simple-implement/app/build/outputs/apk/app-debug.apk
+          disable_web_page_preview: false
+          message: |
+            *Build Success!*
+            Repository: *${{ github.repository }}*
+            Branch: *${{ github.ref_name }}*
+            Module: ADB-SHELL 
+            Commit message: `${{ github.event.head_commit.message }}`
+            [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
