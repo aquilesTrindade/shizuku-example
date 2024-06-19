@@ -1,14 +1,17 @@
 package dev.trindade.shizuku.adb_shell;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
+import androidx.appcompat.app.*;
 
-import dev.trindade.shizuku.adb_shell.databinding.ActivityMainBinding;
+import android.os.*;
+import android.util.*;
+import android.widget.*;
+import android.widget.*;
+import android.text.*;
+import android.text.style.*;
 
-import java.util.List;
+import dev.trindade.shizuku.adb_shell.databinding.*;
+
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         ShizukuUtil.initialize(this);
-        ShizukuUtil.binders();
 
         binding.requestButton.setOnClickListener(v -> {
             boolean shizukuPermissionStatus = ShizukuUtil.checkShizukuPermission(SHIZUKU_REQUEST_CODE);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         outputText.append(line).append("\n");
                     }
                     TextView outputTextView = new TextView(this);
-                    outputTextView.setText(Html.fromHtml(OutputHelper.formatError(outputText.toString()), Html.FROM_HTML_MODE_LEGACY));
+                    outputTextView.setText(Html.fromHtml(OutputHelper.formatOutput(outputText.toString()), Html.FROM_HTML_MODE_LEGACY));
                     binding.scroll.addView(outputTextView);
                     outputTextView.setTextIsSelectable(true);
                 } catch (Exception e) {
