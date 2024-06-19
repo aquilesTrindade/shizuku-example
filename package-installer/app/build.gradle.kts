@@ -38,6 +38,16 @@ android {
         viewBinding = true
         aidl = true
     }
+    
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file(layout.buildDirectory.dir("../testkey.keystore"))
+            storePassword = "testkey"
+            keyAlias = "testkey"
+            keyPassword = "testkey"
+        }
+    }
+    
 }
 
 dependencies {
