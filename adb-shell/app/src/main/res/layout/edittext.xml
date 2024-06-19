@@ -25,5 +25,6 @@
         android:paddingStart="16dp"
         android:paddingTop="28dp"
         android:paddingBottom="16dp"
+        android:id="@+id/shellCommand"
         android:singleLine="true" />
 </io.github.ackeecz.ui.textfield.TextInputLayout>
