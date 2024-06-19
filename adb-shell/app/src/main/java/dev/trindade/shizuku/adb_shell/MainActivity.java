@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
+        ShizukuUtil.initialize(this);
         ShizukuUtil.binders();
 
         binding.requestButton.setOnClickListener(v -> {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                          outputText.append(line).append("\n");
                      }
                      TextView outputTextView = new TextView(this);
-                     outputTextView.setText(Html.fromHtml(outputText.toString()));
+                     outputTextView.setText(ShizukuUtil.formatOutput(outputText));
                      binding.scroll.addView(outputTextView);
                      outputTextView.setTextIsSelectable(true);
                   } catch (Exception e) {
