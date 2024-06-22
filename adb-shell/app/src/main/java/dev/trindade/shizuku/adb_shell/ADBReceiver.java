@@ -11,10 +11,10 @@ public class ADBReceiver extends BroadcastReceiver {
 
         switch (status) {
             case PackageInstaller.STATUS_SUCCESS:
-                Log.d("ADBReceiver", "Installation successful");
+                Toast.makeText(context, "ADBReceiver Installation successful", 4000).show();
                 break;
             default:
-                Log.d("ADBReceiver", "Installation failed: "  + status);
+                Toast.makeText(context, "ADBReceiver Installation failed" + status, 4000).show();
                 break;
         }
     }
