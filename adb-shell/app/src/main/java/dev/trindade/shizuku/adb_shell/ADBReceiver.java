@@ -1,5 +1,7 @@
 package dev.trindade.shizuku.adb_shell;
 
+import android.widget.*;
+import android.view.*;
 import android.content.*;
 import android.content.pm.*;
 import android.util.*;
