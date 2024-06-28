@@ -5,21 +5,21 @@ on:
   push:
     paths:
       - .github/workflows/debugCompile.yml
-      - simple-implement/app/**
-      - simple-implement/build.gradle.kts
-      - simple-implement/gradle.properties
-      - simple-implement/gradlew
-      - simple-implement/gradlew.bat
-      - simple-implement/settings.gradle.kts
-      - adb-shell/app/**
-      - adb-shell/build.gradle.kts
-      - adb-shell/gradle.properties
-      - adb-shell/gradlew
-      - adb-shell/gradlew.bat
-      - adb-shell/settings.gradle.kts
+      - simple-implement-java/app/**
+      - simple-implement-java/build.gradle.kts
+      - simple-implement-java/gradle.properties
+      - simple-implement-java/gradlew
+      - simple-implement-java/gradlew.bat
+      - simple-implement-java/settings.gradle.kts
+      - adb-shell-java/app/**
+      - adb-shell-java/build.gradle.kts
+      - adb-shell-java/gradle.properties
+      - adb-shell-java/gradlew
+      - adb-shell-java/gradlew.bat
+      - adb-shell-java/settings.gradle.kts
 
 jobs:
-  simple-implement-debug-apk:
+  simple-implement-java-debug-apk:
     name: Build Simple Implement Debug APK
     runs-on: ubuntu-latest
 
@@ -35,20 +35,20 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-        run: chmod +x simple-implement/gradlew
+        run: chmod +x simple-implement-java/gradlew
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       
       - name: Build with Gradle
         id: gradle_build_debug
-        run: ./simple-implement/gradlew assembleDebug -p simple-implement
+        run: ./simple-implement-java/gradlew assembleDebug -p simple-implement-java
 
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: simple-implement-debug
-          path: simple-implement/app/build/outputs/apk/
+          name: simple-implement-java-debug
+          path: simple-implement-java/app/build/outputs/apk/
           
       - name: Send APK to Trindade CI Telegram
         if: success()
@@ -57,7 +57,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: simple-implement/app/build/outputs/apk/debug/app-debug.apk
+          document: simple-implement-java/app/build/outputs/apk/debug/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
@@ -68,7 +68,7 @@ jobs:
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
                     
           
-  adb-shell-debug-apk:
+  adb-shell-java-debug-apk:
     name: Build Adb-Shell Debug APK
     runs-on: ubuntu-latest
 
@@ -84,20 +84,20 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
-        run: chmod +x adb-shell/gradlew
+        run: chmod +x adb-shell-java/gradlew
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       
       - name: Build with Gradle
         id: gradle_build_debug
-        run: ./adb-shell/gradlew assembleDebug -p adb-shell
+        run: ./adb-shell-java/gradlew assembleDebug -p adb-shell-java
 
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: adb-shell-debug
-          path: adb-shell/app/build/outputs/apk/
+          name: adb-shell-java-debug
+          path: adb-shell-java/app/build/outputs/apk/
           
       - name: Send APK to Trindade CI Telegram
         if: success()
@@ -106,7 +106,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: adb-shell/app/build/outputs/apk/debug/app-debug.apk
+          document: adb-shell-java/app/build/outputs/apk/debug/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
