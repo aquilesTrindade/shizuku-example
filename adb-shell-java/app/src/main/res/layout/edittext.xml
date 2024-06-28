@@ -1,32 +1,18 @@
-<io.github.ackeecz.ui.textfield.TextInputLayout
+<com.google.android.material.textfield.TextInputLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
     android:hint="Command"
-    app:boxBackgroundColor="?attr/colorOnBackground"
-    app:boxBackgroundMode="outline"
     app:boxCornerRadiusBottomEnd="8dp"
     app:boxCornerRadiusBottomStart="8dp"
     app:boxCornerRadiusTopEnd="8dp"
     app:boxCornerRadiusTopStart="8dp"
-    app:boxStrokeWidth="0dp"
-    app:boxStrokeWidthFocused="1dp"
-    app:hintEnabled="true"
-    app:hintPaddingTop="12dp"
-    app:hintTextAppearance="@style/TextAppearance.Design.Hint">
+    app:boxBackgroundMode="filled">
 
-    <io.github.ackeecz.ui.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:paddingStart="16dp"
-        android:paddingTop="28dp"
-        android:paddingBottom="16dp"
         android:id="@+id/shellCommand"
         android:singleLine="true" />
-</io.github.ackeecz.ui.textfield.TextInputLayout>
+</com.google.android.material.textfield.TextInputLayout>
